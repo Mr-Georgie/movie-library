@@ -21,6 +21,7 @@ export default function App() {
     // handles which card is shown in detail
     function clickCard() {
         setisCardClicked(prevCardState => !prevCardState)
+        // setShowSearchBar(prevState => !prevState)
     }
 
     // uses state to toggle between search icon and search input field
@@ -38,7 +39,7 @@ export default function App() {
 
     // for navbar component
     function handleChange(value) {
-        setInputText(value)
+        setInputText(value.toLowerCase())
     }
 
     // for navbar component

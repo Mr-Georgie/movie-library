@@ -1,5 +1,6 @@
 import React from 'react';
 
+import arrow from "../images/arrow-left.png"
 // remove later
 import movieData from '../data/data'
 
@@ -15,9 +16,11 @@ export default function Card(props) {
     return (
         <div className='card-page-container'>
             <div className='main-content'>
+                <div className="back" >
+                    <img src={arrow} alt="go back" onClick={() => props.handleClick()}/>
+                </div>
                 <h1 className='header-text'>
                     <span >{props.movieInfo.name} </span>
-                
                 </h1>
                 
                 <img src={props.movieInfo.cover_photo_link} alt="" className='card-img'/>
