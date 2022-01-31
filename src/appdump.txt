@@ -1,0 +1,64 @@
+import React, {useState} from 'react';
+import Navbar from './components/Navbar'
+import Header from './components/Header'
+import Cards from './components/Cards'
+import Card from './components/Card'
+import movieData from './data/data'
+
+// import a from './images/1.jpg'
+// import b from './images/2.jpg'
+// import c from './images/3.jpg'
+// import d from './images/4.jpg'
+// import e from './images/5.png'
+
+
+export default function App() {
+
+    const [isCardClicked, setisCardClicked] = useState(false)
+    const [selectedMovie, setSelectedMovie] = useState({})
+
+    function clickCard() {
+        setisCardClicked(prevCardState => !prevCardState)
+    }
+
+    function movieDetail(movieInfo) {
+        setSelectedMovie(movieInfo)
+    }
+
+    // console.log(selectedMovie)
+
+    const cards = movieData.map(movie => {
+        return (
+            <Cards
+                key={movie.id}
+                movie={movie}
+                handleClick={clickCard}
+                getMovieDetail={movieDetail}
+            /> 
+        )
+    })
+
+    return (
+        <div>
+            {isCardClicked === false && 
+            <div>
+                <Navbar />
+                <div className='container'>
+                    <Header />
+                    <section className="cards-list">
+                        {cards}
+                    </section>
+                </div>
+            </div>
+            }
+            {isCardClicked === true && 
+            <div>
+                <Card 
+                    movieInfo={selectedMovie}
+                    handleClick={clickCard}    
+                />
+            </div>
+            }
+        </div>
+    )
+}

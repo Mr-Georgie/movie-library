@@ -1,0 +1,49 @@
+import React, {useState} from 'react';
+
+export default function Header() {
+
+  // create header items as react state variables
+  const [header, setActive] = useState(
+    [
+      {name: "Latest",isActive: true},
+      {name: "Netnaija",isActive: false},
+      {name: "FzMoviez",isActive: false}
+    ]
+  )
+
+  // function to implement header item active class
+  function toggleActive(name) {
+    setActive(prevHeader => {
+
+      // first change the current active class to inactive
+      let changedHeader = prevHeader.map((item) => {
+        return item.isActive === true ? {...item, isActive: !item.isActive} : item
+      })
+
+      // then assign a new active class to header item based on its name
+      return changedHeader.map((item) => {
+        return item.name === name ? {...item, isActive: !item.isActive} : item
+      })
+    })
+      
+  }
+
+  // use array.map(to display header items)
+  const headerElements = header.map(item => {
+    return (
+      <div key={item.name} className="header-item" onClick={()=> toggleActive(item.name)} 
+      style={{color: item.isActive ? "#7B6EF6" : "#c3c8d46c"}}>
+        <span>{item.name}</span>
+        {/* display this if the item is active */}
+        {item.isActive && <span><hr className='horizontal-rule'/></span>}
+      </div>  
+    )
+    // #C3C8D4
+  })
+
+  return (
+    <section className="header-list">
+      {headerElements}
+    </section>
+  )
+}

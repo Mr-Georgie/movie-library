@@ -1,0 +1,10 @@
+@media screen and (max-width: 359px) {
+    .cards-list {
+        overflow-x: scroll;
+    }
+
+    .card {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
