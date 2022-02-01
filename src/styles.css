@@ -154,6 +154,7 @@ nav {
 .card-page-container {
     display: flex;
     margin-top: 70px;
+    margin-bottom: 50px;
 }
 
 .main-content {
@@ -265,6 +266,7 @@ nav {
 
     margin: 0 auto;
     padding-top: 110px;
+    padding-bottom: 90px;
 }
 
 .no-movie-found > .heading {

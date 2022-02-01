@@ -1,7 +1,7 @@
 @media screen and (min-width: 360px) and (max-width: 560px) {
 
     .header-categories{
-        width: 310px;
+        width: 100%;
     }
     
     .cards-list {
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 561px) and (max-width: 759px) {
     .header-categories{
-        width: 320px;
+        width: 100%;
     }
     
     .cards-list {

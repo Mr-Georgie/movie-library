@@ -6,7 +6,7 @@
     }
 
     .header-categories{
-        width: 390px;
+        width: 100%;
         margin: 40px 0px;
         font-size: 16px;
         font-weight: 600;
@@ -85,6 +85,10 @@
     .header-text {
         font-size: 64px;
         line-height: 80px;
+    }
+
+    .header-categories{
+        width: 80%;
     }
 
     .header-desc {

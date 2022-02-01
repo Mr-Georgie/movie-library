@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Cards from './components/Cards'
@@ -6,7 +6,7 @@ import Card from './components/Card'
 import Footer from './components/Footer'
 
 // remove this below
-import movieData from './data/data'
+// import data from './data/data'
 
 
 
@@ -18,6 +18,9 @@ export default function App() {
     const [inputText, setInputText] = useState("")
     const [filterText, setFilterText] = useState("")
     const [showSearchBar, setShowSearchBar] = useState(false)
+
+    // new
+    const [movieData, setMovieData] = useState([])
 
     // handles which card is shown in detail
     function clickCard() {
@@ -52,6 +55,14 @@ export default function App() {
     function handleClick(name) {
         setFilterText(name)
     }
+
+    useEffect(() => {
+        fetch(`https://gophie-ocena.herokuapp.com/list/?page=1${filterText === "" ? "&" : `&engine=${filterText.toLowerCase()}` }`)
+            .then(res => res.json())
+            .then(data => setMovieData(data))
+    }, [filterText])
+
+    console.log(movieData.length)
 
     // this should be rendered when the user uses the header category to filter movies
     const filteredCards = movieData.filter(movie => movie.engine === filterText).map(movie => {
@@ -138,7 +149,8 @@ export default function App() {
                 <Card 
                     movieInfo={selectedMovie}
                     handleClick={clickCard}
-                    getMovieDetail={movieDetail}    
+                    getMovieDetail={movieDetail}
+                    movieData={movieData}    
                 />
             </div>
             }
