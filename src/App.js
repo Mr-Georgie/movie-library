@@ -61,9 +61,10 @@ export default function App() {
             {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Headers": "Origin",
+                    "Access-Control-Allow-Headers": "*",
                     "Content-Type": "Accept"
-                }
+                },
+                mode: 'cors'
             })
             .then(res => res.json())
             .then(data => setMovieData(data))
