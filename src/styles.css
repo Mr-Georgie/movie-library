@@ -11,6 +11,11 @@ body {
     background-position: 50% -160px;
     background-repeat: repeat-y;
     background-size: 1440px;
+    height:100%;
+}
+
+#body {
+    min-height: 100vh;
 }
 
 /* Generic style */
@@ -282,4 +287,36 @@ nav {
 
     padding: 0px;
     margin: 0px;
+}
+
+/*  */
+footer {
+    background: #161619;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    /* for text */
+    color: rgba(255, 255, 255, 0.521);
+    font-size: 14.4608px;
+    font-style: italic;
+    line-height: 18px;
+    letter-spacing: -0.075em;
+}
+
+/* inside footer */
+
+.emoji {
+    color: red;
+    margin: 0px 5px;
+}
+
+.my-link {
+    color: rgba(255, 255, 255, 0.884);
+    font-weight: 700;
+    text-decoration-line: underline;
+    letter-spacing: 0.17em;
 }

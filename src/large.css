@@ -74,6 +74,11 @@
         line-height: 32px;
     }
 
+    .credit {
+        display: flex;
+        gap: 10px;
+    }
+
 }
 
 @media screen and (min-width: 960px){

@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Cards from './components/Cards'
 import Card from './components/Card'
+import Footer from './components/Footer'
 
 // remove this below
 import movieData from './data/data'
@@ -86,7 +87,8 @@ export default function App() {
                         )
 
     return (
-        <div>
+        <>
+            <div id='body'>
             <Navbar 
                 /**
                  * this navbar contains the app logo and searchbar /  searchbar icon
@@ -140,6 +142,9 @@ export default function App() {
                 />
             </div>
             }
-        </div>
+            </div>
+            
+            <Footer />
+        </>
     )
 }

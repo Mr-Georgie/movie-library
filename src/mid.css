@@ -1,6 +1,4 @@
 @media screen and (min-width: 360px) and (max-width: 560px) {
-    
-    
 
     .header-categories{
         width: 310px;
@@ -13,6 +11,10 @@
     .card {
         flex: 0 0 auto;
         width: 48%;
+    }
+
+    .credit > * {
+        display: block;
     }
 }
 
@@ -29,5 +31,9 @@
     .card {
         flex: 0 0 auto;
         width: 31%;
+    }
+
+    .credit > * {
+        display: block;
     }
 }
