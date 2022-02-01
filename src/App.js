@@ -57,7 +57,7 @@ export default function App() {
     }
 
     useEffect(() => {
-        fetch(`https://gophie-ocena.herokuapp.com/list/?page=1${filterText === "" ? "&" : `&engine=${filterText.toLowerCase()}` }`)
+        fetch(`https://cors-anywhere.herokuapp.com/https://gophie-ocena.herokuapp.com/list/?page=1${filterText === "" ? "&" : `&engine=${filterText.toLowerCase()}` }`)
             .then(res => res.json())
             .then(data => setMovieData(data))
     }, [filterText])
