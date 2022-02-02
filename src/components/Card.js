@@ -1,6 +1,7 @@
 import React from 'react';
 
 import arrow from "../images/arrow-left.png"
+import defaultPic from '../images/no-pic.png'
 
 
 export default function Card(props) {
@@ -10,6 +11,10 @@ export default function Card(props) {
             <p key={movie.id} onClick={() => props.getMovieDetail(movie)}>{movie.name}</p> 
         )
     })
+
+    function handleImageError(event) {
+        event.target.src = defaultPic
+    }
 
     return (
         <div className='card-page-container'>
@@ -21,7 +26,7 @@ export default function Card(props) {
                     <span >{props.movieInfo.name} </span>
                 </h1>
                 
-                <img src={props.movieInfo.cover_photo_link} alt="" className='card-img'/>
+                <img onError={handleImageError} src={props.movieInfo.cover_photo_link} alt="" className='card-img'/>
                 <p className="movie-description">{props.movieInfo.description}</p>
                 <p className='movie-description'>Size: <span className='movie-size'>{props.movieInfo.size}</span></p>
                 <p className='movie-description'>Category: <span className='movie-size'>{props.movieInfo.category}</span></p>
