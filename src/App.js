@@ -56,8 +56,10 @@ export default function App() {
         setFilterText(name)
     }
 
+    // http://localhost:5000/
+    
     useEffect(() => {
-        fetch(`http://localhost:5000/getData/?page=1&engine=${filterText}`,
+        fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText}`,
             {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
