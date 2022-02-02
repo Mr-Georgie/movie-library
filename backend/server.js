@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 const corsOptions = {
     // origin: "http://localhost:3000"   *for local
-    origin: "https://moviee-library.netlify.app/",
+    origin: "*",
     optionsSuccessStatus: 200 // For legacy browser support
 };
 
