@@ -59,7 +59,7 @@ export default function App() {
     // http://localhost:5000/
 
     useEffect(() => {
-        fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText}`)
+        fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText === "" ? "" : filterText.toLowerCase()}`)
             .then(res => res.json())
             .then(data => setMovieData(data))
             .catch(err => console.error(err))

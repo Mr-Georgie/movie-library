@@ -18,7 +18,7 @@ app.get('/getData', cors(corsOptions), async (req, res) => {
     const fetchOptions = {
         method: 'GET'
     }
-    const requestEndpoint = `https://gophie-ocena.herokuapp.com/list/?page=${req.query.page}${req.query.engine === "" ? "" : `&engine=${req.query.engine.toLowerCase()}`}`;
+    const requestEndpoint = `https://gophie-ocena.herokuapp.com/list/?page=${req.query.page}${req.query.engine === "" ? "" : `&engine=${req.query.engine}`}`;
 
     const response = await fetch(requestEndpoint, fetchOptions);
     const jsonResponse = await response.json();
