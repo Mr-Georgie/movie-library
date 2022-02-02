@@ -59,15 +59,7 @@ export default function App() {
     // http://localhost:5000/
 
     useEffect(() => {
-        fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText}`,
-            {
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Headers": "*",
-                    "Content-Type": "Accept"
-                },
-                mode: 'cors'
-            })
+        fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText}`)
             .then(res => res.json())
             .then(data => setMovieData(data))
             .catch(err => console.error(err))
