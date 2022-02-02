@@ -7,7 +7,8 @@ const app = express();
 
 app.use(cors());
 const corsOptions = {
-    origin: "http://localhost:3000"
+    // origin: "http://localhost:3000"   *for local
+    origin: "https://moviee-library.netlify.app/"
 };
 
 // This function runs if the http://localhost:5000/getData endpoint
@@ -25,5 +26,6 @@ app.get('/getData', cors(corsOptions), async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`);
+    // console.log(`Example app listening at http://localhost:${PORT}`); for local server
+    console.log(`Example app listening at port ${PORT}`);
 });
