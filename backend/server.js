@@ -5,15 +5,17 @@ import fetch from 'node-fetch';
 const PORT = 5000;
 const app = express();
 
-app.use(cors());
 const corsOptions = {
     // origin: "http://localhost:3000"   *for local
-    origin: "https://moviee-library.netlify.app/"
+    origin: "https://moviee-library.netlify.app/",
+    optionsSuccessStatus: 200 // For legacy browser support
 };
+
+app.use(cors(corsOptions));
 
 // This function runs if the http://localhost:5000/getData endpoint
 // is requested with a GET request
-app.get('/getData', cors(corsOptions), async (req, res) => {
+app.get('/getData', cors(), async (req, res) => {
     const fetchOptions = {
         method: 'GET'
     }

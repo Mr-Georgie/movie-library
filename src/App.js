@@ -57,7 +57,7 @@ export default function App() {
     }
 
     // http://localhost:5000/
-    
+
     useEffect(() => {
         fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText}`,
             {
@@ -70,6 +70,7 @@ export default function App() {
             })
             .then(res => res.json())
             .then(data => setMovieData(data))
+            .catch(err => console.error(err))
     }, [filterText])
 
     console.log(movieData.length)
