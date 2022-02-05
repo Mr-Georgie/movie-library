@@ -28,14 +28,17 @@ app.get('/getData', cors(corsOptions), async (req, res) => {
 
     // First push all the links into an array using the list of engines
     const engineList = req.query.engine.split(',')
-    const pageNumber = req.query.page
+    const pageNumber = req.query.page.split(',')
 
     const links = [];
-    for (let i = 0; i < engineList.length; i++) {
-        links.push(`https://gophie-ocena.herokuapp.com/list/?page=${pageNumber}&engine=${engineList[i]}`);
-        console.log(engineList[i])
+    for (let p = 0; p < pageNumber.length; p++) {
+        for (let i = 0; i < engineList.length; i++) {
+            links.push(`https://gophie-ocena.herokuapp.com/list/?page=${pageNumber[p]}&engine=${engineList[i]}`);
+            console.log(pageNumber[p])
+        }
     }
-
+    console.log(links.length)
+    
     // Next create an array of promises by `map`ing
     // over the links using `fetch`.
     // Notice I've used throttle here to slow down the hits on the API

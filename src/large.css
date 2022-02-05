@@ -100,6 +100,11 @@
         width: 250px;
     }
 
+    .card > img{
+        height: 350px;
+        object-fit: cover;
+    }
+
     .card-img {
         height: 450px;
     }

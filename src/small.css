@@ -7,6 +7,11 @@
         flex: 0 0 auto;
         width: 50%;
     }
+    .card > img{
+        height: 250px;
+        object-fit: cover;
+    }
+
     .credit > * {
         display: block;
     }

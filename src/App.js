@@ -16,8 +16,10 @@ export default function App() {
     const [selectedMovie, setSelectedMovie] = useState({})
     
     const [inputText, setInputText] = useState("")
-    const [filterText, setFilterText] = useState("NetNaija")
+    const [filterText, setFilterText] = useState("")
     const [showSearchBar, setShowSearchBar] = useState(false)
+
+    const [error, setError] = useState(false)
 
     // new
     const [movieData, setMovieData] = useState([])
@@ -60,20 +62,24 @@ export default function App() {
     // https://movie-library-backend.herokuapp.com/ -> live
 
     useEffect(() => {
-        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1&engine=netnaija,fzmovies,besthdmovies,tvseries")
+        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1,2,3&engine=netnaija,fzmovies,besthdmovies")
             .then(res => res.json())
             .then(data => setMovieData(data))
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.log("An error occured:", err);
+                setError(true);
+            })
     }, [])
 
-    console.log(filterText)
+    console.log("filter: ",filterText)
+    console.log("Error? ", error)
 
     // this should be rendered when the user uses the header category to filter movies
     const filteredCards = movieData.filter(movie => movie.engine === filterText).map(movie => {
 
         return (
             <Cards
-                key={movie.id}
+                key={movie.referral_id}
                 movie={movie}
                 handleClick={clickCard}
                 getMovieDetail={movieDetail}
@@ -86,7 +92,7 @@ export default function App() {
 
         return (
             <Cards
-                key={movie.id}
+                key={movie.referral_id}
                 movie={movie}
                 handleClick={clickCard}
                 getMovieDetail={movieDetail}
@@ -96,8 +102,12 @@ export default function App() {
 
     // this should be rendered when no movie was found either by filter or searching or if the app could not get movies from API
     const noMovieFound = (  <div className='no-movie-found'>
-                                <h1 className='heading'>Sorry, No results found</h1>
-                                <p className='text'>There are no movies or TV shows matching your search terms.</p>
+                                <h1 className='heading'>
+                                    {error ? "Oops! Please reload this page." : "Sorry, No results found"}
+                                </h1>
+                                <p className='text'>
+                                {error ? "An error occured. Possibly your network connection is not stable" : "There are no movies or TV shows matching your search terms."}
+                                </p>
                             </div>
                         )
     
@@ -144,7 +154,8 @@ export default function App() {
                              * else show filtered cards
                              * user searching or filtering was not found? show no movie found 
                              */
-                            <>{!showSearchBar ? filteredCards: searchedCards} </> : <LoadingContainer />}
+                            <>{!showSearchBar ? filteredCards: searchedCards} </> : 
+                            !error ? <LoadingContainer /> : noMovieFound }
                     </div>
                     }
                 </div>

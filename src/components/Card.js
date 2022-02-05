@@ -6,9 +6,9 @@ import defaultPic from '../images/no-pic.png'
 
 export default function Card(props) {
 
-    const relatedMovie = props.movieData.map(movie => {
+    const relatedMovie = props.movieData.slice(1, 8).map(movie => {
         return (
-            <p key={movie.id} onClick={() => props.getMovieDetail(movie)}>{movie.name}</p> 
+            <p key={movie.referral_id} onClick={() => props.getMovieDetail(movie)}>{movie.name}</p> 
         )
     })
 

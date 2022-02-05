@@ -6,11 +6,11 @@ export default function Header(props) {
   // create header items as react state variables
   const [categories, setActive] = useState(
     [
-      // {name: "All",isActive: true},
-      {name: "NetNaija",isActive: true},
+      {name: "All",isActive: true},
+      {name: "NetNaija",isActive: false},
       {name: "FzMovies",isActive: false},
       {name: "BestHDMovies",isActive: false},
-      {name: "TvSeries",isActive: false}
+      // {name: "TvSeries",isActive: false}
     ]
   )
 
@@ -57,7 +57,7 @@ export default function Header(props) {
       </h1>
       { !props.isSearchIconClicked &&
       <p className='header-desc'>
-        Get the <span>top 20 latest movies</span> from your <span>favorite sites</span> right here without ads and other distractions
+        Get the <span>latest movies</span> from your <span>favorite sites</span> right here without ads and other distractions
       </p>
       }
       { props.isSearchIconClicked &&
