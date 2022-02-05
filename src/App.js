@@ -60,7 +60,7 @@ export default function App() {
     // https://movie-library-backend.herokuapp.com/ -> live
 
     useEffect(() => {
-        fetch("http://localhost:5000/getData/?page=1&engine=netnaija,fzmovies,besthdmovies,tvseries")
+        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1&engine=netnaija,fzmovies,besthdmovies,tvseries")
             .then(res => res.json())
             .then(data => setMovieData(data))
             .catch(err => console.error(err))
