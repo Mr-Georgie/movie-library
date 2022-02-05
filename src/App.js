@@ -75,11 +75,11 @@ export default function App() {
     console.log("Error? ", error)
 
     // this should be rendered when the user uses the header category to filter movies
-    const filteredCards = movieData.filter(movie => movie.engine === filterText).map(movie => {
+    const filteredCards = movieData.filter(movie => movie.engine === filterText).map((movie, index) => {
 
         return (
             <Cards
-                key={movie.referral_id}
+                key={index}
                 movie={movie}
                 handleClick={clickCard}
                 getMovieDetail={movieDetail}
@@ -88,11 +88,11 @@ export default function App() {
     })
 
     // this should be rendered when user uses input field to search for movie
-    const searchedCards = movieData.filter(movie => movie.name.toLowerCase().indexOf(inputText) > -1).map(movie => {
+    const searchedCards = movieData.filter(movie => movie.name.toLowerCase().indexOf(inputText) > -1).map((movie, index) => {
 
         return (
             <Cards
-                key={movie.referral_id}
+                key={index}
                 movie={movie}
                 handleClick={clickCard}
                 getMovieDetail={movieDetail}
@@ -141,7 +141,8 @@ export default function App() {
                     {filterText === "" && 
                     // show searched cards if user is not filtering by header category
                     <div className='cards-list'>
-                        {searchedCards.length !== 0 ? searchedCards : noMovieFound}
+                        {searchedCards.length !== 0 ? searchedCards : 
+                        !error ? <LoadingContainer /> : noMovieFound}
                     </div>
                     }
 
