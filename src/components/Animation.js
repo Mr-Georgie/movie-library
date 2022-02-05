@@ -7,7 +7,7 @@ const styles = {
 const LoadingContainer = () => {
     return (
         <div className='no-movie-found'>
-        <LoopCircleLoading size="large" style={styles}/>;
+        <LoopCircleLoading size="large" color="#9C92F8" style={styles}/>;
         </div>
     )
 }
