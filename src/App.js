@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 
 // remove this below
 // import data from './data/data'
-
+import LoadingContainer from './components/Animation';
 
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
     const [selectedMovie, setSelectedMovie] = useState({})
     
     const [inputText, setInputText] = useState("")
-    const [filterText, setFilterText] = useState("")
+    const [filterText, setFilterText] = useState("NetNaija")
     const [showSearchBar, setShowSearchBar] = useState(false)
 
     // new
@@ -56,16 +56,17 @@ export default function App() {
         setFilterText(name)
     }
 
-    // http://localhost:5000/
+    // http://localhost:5000/ -> local
+    // https://movie-library-backend.herokuapp.com/ -> live
 
     useEffect(() => {
-        fetch(`https://movie-library-backend.herokuapp.com/getData/?page=1&engine=${filterText === "" ? "" : filterText.toLowerCase()}`)
+        fetch("http://localhost:5000/getData/?page=1&engine=netnaija,fzmovies,besthdmovies,tvseries")
             .then(res => res.json())
             .then(data => setMovieData(data))
             .catch(err => console.error(err))
-    }, [filterText])
+    }, [])
 
-    console.log(movieData.length)
+    console.log(filterText)
 
     // this should be rendered when the user uses the header category to filter movies
     const filteredCards = movieData.filter(movie => movie.engine === filterText).map(movie => {
@@ -99,6 +100,7 @@ export default function App() {
                                 <p className='text'>There are no movies or TV shows matching your search terms.</p>
                             </div>
                         )
+    
 
     return (
         <>
@@ -123,6 +125,7 @@ export default function App() {
                 <div className="container">
                     <Header 
                         isSearchIconClicked={showSearchBar}
+                        filterText={filterText}
                         handleClick={handleClick}
                     />
                     {filterText === "" && 
@@ -141,7 +144,7 @@ export default function App() {
                              * else show filtered cards
                              * user searching or filtering was not found? show no movie found 
                              */
-                            <>{!showSearchBar ? filteredCards: searchedCards} </> : noMovieFound}
+                            <>{!showSearchBar ? filteredCards: searchedCards} </> : <LoadingContainer />}
                     </div>
                     }
                 </div>

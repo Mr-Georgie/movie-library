@@ -22,7 +22,7 @@ export default function Navbar(props) {
                 }
                 {props.isSearchIconClicked && 
                     <div className="searchbar" style={{width:"100%"}}>
-                        <input type="text" placeholder='Search for anything e.g 2021, 2022, jumanji...' 
+                        <input type="text" placeholder='Search by name, year, etc e.g 2021, jumanji...' 
                         style={{width:"100%"}}
                         onChange={getInput}
                         value={props.inputText}

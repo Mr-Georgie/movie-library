@@ -291,6 +291,14 @@ nav {
     margin: 0px;
 }
 
+/* instead of no-movie-found */
+.loading-container {
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+}
+
+
 /*  */
 footer {
     background: #161619;
