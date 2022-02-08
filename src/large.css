@@ -1,6 +1,6 @@
 @media screen and (min-width: 760px){
 
-    .container {
+    .app-container {
         padding-right: 50px;
         padding-left: 50px;
     }
@@ -27,7 +27,7 @@
         gap: 15px;
     }
 
-    .card {
+    .custom-card {
         flex: 0 0 auto;
         width: 220px;
     }
@@ -79,6 +79,13 @@
         gap: 10px;
     }
 
+    .modal-title {
+        font-weight: 600;
+        font-size: 33px;
+        letter-spacing: -0.02em;
+        color: #EBEEF5;
+    }
+
 }
 
 @media screen and (min-width: 960px){
@@ -95,17 +102,17 @@
         line-height: 24px;
         font-size: 16px;
     }
-    .card {
+    .custom-card {
         flex: 0 0 auto;
         width: 250px;
     }
 
-    .card > img{
+    .custom-card > img{
         height: 350px;
         object-fit: cover;
     }
 
-    .card-img {
+    .custom-card-img {
         height: 450px;
     }
 

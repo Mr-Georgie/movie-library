@@ -11,8 +11,8 @@ export default function Navbar(props) {
     }
 
     return (
-        <div className='navbar'>
-            <nav className='container' style={{justifyContent: !props.isSearchIconClicked ? "space-between": "flex-start"}}>
+        <div className='custom-navbar'>
+            <nav className='app-container' style={{justifyContent: !props.isSearchIconClicked ? "space-between": "flex-start"}}>
                 {!props.isSearchIconClicked && 
                     <img src={logo} className="nav-logo" alt="logo" onClick={() => props.handleClick()}/>
                 }

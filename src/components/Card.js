@@ -26,7 +26,7 @@ export default function Card(props) {
                     <span >{props.movieInfo.name} </span>
                 </h1>
                 
-                <img onError={handleImageError} src={props.movieInfo.cover_photo_link} alt="" className='card-img'/>
+                <img onError={handleImageError} src={props.movieInfo.cover_photo_link} alt="" className='custom-card-img'/>
                 <p className="movie-description">{props.movieInfo.description}</p>
                 <p className='movie-description'>Size: <span className='movie-size'>{props.movieInfo.size}</span></p>
                 <p className='movie-description'>Category: <span className='movie-size'>{props.movieInfo.category}</span></p>

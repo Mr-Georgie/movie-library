@@ -8,7 +8,7 @@
         flex-wrap: wrap;
     }
 
-    .card {
+    .custom-card {
         flex: 0 0 auto;
         width: 48%;
     }
@@ -16,6 +16,14 @@
     .credit > * {
         display: block;
     }
+
+    .modal-title {
+        font-weight: 600;
+        font-size: 23px;
+        letter-spacing: -0.02em;
+        color: #EBEEF5;
+    }
+    
 }
 
 @media screen and (min-width: 561px) and (max-width: 759px) {
@@ -28,12 +36,19 @@
         gap: 15px;
     }
 
-    .card {
+    .custom-card {
         flex: 0 0 auto;
         width: 31%;
     }
 
     .credit > * {
         display: block;
+    }
+
+    .modal-title {
+        font-weight: 600;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+        color: #EBEEF5;
     }
 }

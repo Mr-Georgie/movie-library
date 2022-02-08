@@ -2,17 +2,22 @@ import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Cards from './components/Cards'
-import Card from './components/Card'
+// import Card from './components/Card'
 import Footer from './components/Footer'
 
-// remove this below
-// import data from './data/data'
 import LoadingContainer from './components/Animation';
+
+import Modal from './components/Modal';
+import WelcomeModal from './components/WelcomeModal';
 
 
 export default function App() {
 
-    const [isCardClicked, setisCardClicked] = useState(false)
+    // The back-to-top button is hidden at the beginning
+    const [showButton, setShowButton] = useState(false);
+    
+    // 
+    // const [isCardClicked, setisCardClicked] = useState(false)
     const [selectedMovie, setSelectedMovie] = useState({})
     
     const [inputText, setInputText] = useState("")
@@ -23,12 +28,6 @@ export default function App() {
 
     // new
     const [movieData, setMovieData] = useState([])
-
-    // handles which card is shown in detail
-    function clickCard() {
-        setisCardClicked(prevCardState => !prevCardState)
-        // setShowSearchBar(prevState => !prevState)
-    }
 
     // uses state to toggle between search icon and search input field
     function clickSearchIcon() {
@@ -58,6 +57,25 @@ export default function App() {
         setFilterText(name)
     }
 
+    // scroll to top effect
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 450) {
+            setShowButton(true);
+          } else {
+            setShowButton(false);
+          }
+        });
+      }, []);
+
+    // This function will scroll the window to the top 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // for smoothly scrolling
+        });
+    };
+
     // http://localhost:5000/ -> local
     // https://movie-library-backend.herokuapp.com/ -> live
 
@@ -81,7 +99,6 @@ export default function App() {
             <Cards
                 key={index}
                 movie={movie}
-                handleClick={clickCard}
                 getMovieDetail={movieDetail}
             /> 
         )
@@ -94,45 +111,42 @@ export default function App() {
             <Cards
                 key={index}
                 movie={movie}
-                handleClick={clickCard}
                 getMovieDetail={movieDetail}
             /> 
         )
     })
 
     // this should be rendered when no movie was found either by filter or searching or if the app could not get movies from API
-    const noMovieFound = (  <div className='no-movie-found'>
-                                <h1 className='heading'>
-                                    {error ? "Oops! Please reload this page." : "Sorry, No results found"}
-                                </h1>
-                                <p className='text'>
-                                {error ? "An error occured. Possibly your network connection is not stable" : "There are no movies or TV shows matching your search terms."}
-                                </p>
-                            </div>
-                        )
+    const noMovieFound = (  
+        <div className='no-movie-found'>
+            <h1 className='heading'>
+                {error ? "Oops! Please reload this page." : "Sorry, No results found"}
+            </h1>
+            <p className='text'>
+                {error ? "An error occured. Possibly your network connection is not stable" : "There are no movies or TV shows matching your search terms."}
+            </p>
+        </div>
+    )
     
 
     return (
         <>
             <div id='body'>
-            <Navbar 
-                /**
-                 * this navbar contains the app logo and searchbar /  searchbar icon
-                 * it receives the inputted search term, then the handleChange function stores searched term to react state
-                 * react uses searched term to filter the cards rendered
-                 */ 
-                handleClick={clickCard}
-                searchBarHandler={clickSearchIcon}
-                isSearchIconClicked={showSearchBar}
-                inputText={inputText}
-                handleChange={handleChange}
-                clearInput={clearInput}
+                <Navbar 
+                    /**
+                     * this navbar contains the app logo and searchbar /  searchbar icon
+                     * it receives the inputted search term, then the handleChange function stores searched term to react state
+                     * react uses searched term to filter the cards rendered
+                     */ 
+                    // handleClick={clickCard}
+                    searchBarHandler={clickSearchIcon}
+                    isSearchIconClicked={showSearchBar}
+                    inputText={inputText}
+                    handleChange={handleChange}
+                    clearInput={clearInput}
 
-            />
-            
-            { isCardClicked === false && 
-            // show all cards/movies if no card/movie is selected or clicked
-                <div className="container">
+                />
+                <div className="app-container">
                     <Header 
                         isSearchIconClicked={showSearchBar}
                         filterText={filterText}
@@ -147,32 +161,36 @@ export default function App() {
                     }
 
                     {filterText !== "" && 
-                    // show filtered cards when user is filtering
-                    <div className='cards-list'>
-                        {filteredCards.length !== 0 ? 
-                            /**
-                             * is user searching? show searched cards
-                             * else show filtered cards
-                             * user searching or filtering was not found? show no movie found 
-                             */
-                            <>{!showSearchBar ? filteredCards: searchedCards} </> : 
-                            !error ? <LoadingContainer /> : noMovieFound }
-                    </div>
+                        // show filtered cards when user is filtering
+                        <div className='cards-list'>
+                            {filteredCards.length !== 0 ? 
+                                /**
+                                 * is user searching? show searched cards
+                                 * else show filtered cards
+                                 * user searching or filtering was not found? show no movie found 
+                                 */
+                                <>{!showSearchBar ? filteredCards: searchedCards} </> : 
+                                !error ? <LoadingContainer /> : noMovieFound }
+                        </div>
                     }
-                </div>
-            }
-            {isCardClicked === true && 
-            // show a particular movie in detail when its clicked
-            <div className="container">
-                <Card 
+                    </div>
+                
+                <Modal 
                     movieInfo={selectedMovie}
-                    handleClick={clickCard}
+                    // handleClick={clickCard}
                     getMovieDetail={movieDetail}
-                    movieData={movieData}    
+                    movieData={movieData}
                 />
+
+                <WelcomeModal />
             </div>
-            }
-            </div>
+
+            {showButton && (
+                <button onClick={scrollToTop} className="back-to-top">
+                ☝️
+                </button>
+            )}
+            {/* &#8679; is used to create the upward arrow */}
             
             <Footer />
         </>

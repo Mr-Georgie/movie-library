@@ -12,7 +12,7 @@ export default function Footer() {
 
     return (
         <footer>
-            <div className='footer container'>
+            <div className='footer app-container'>
                 <p>A Personal Project Made <br /> with <span className='emoji'>❤️</span> by <a href="https://twitter.com/GeorgeIsiguzo" className='my-link'> Georgie</a></p>
                 <p className='credit'> <span style={head}>Credits:</span> 
                     <a href="https://gophie.cam/Server1" 

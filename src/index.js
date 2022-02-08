@@ -4,6 +4,7 @@ import './styles.css';
 import './small.css';
 import './mid.css';
 import './large.css';
+import './modal.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
