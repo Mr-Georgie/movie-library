@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import LoadingContainer from './components/Animation';
 
 import Modal from './components/Modal';
-import WelcomeModal from './components/WelcomeModal';
+// import WelcomeModal from './components/WelcomeModal';
 
 
 export default function App() {
@@ -182,7 +182,7 @@ export default function App() {
                     movieData={movieData}
                 />
 
-                <WelcomeModal />
+                {/* <WelcomeModal /> */}
             </div>
 
             {showButton && (
