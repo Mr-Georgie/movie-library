@@ -25,6 +25,7 @@ export default function App() {
     const [showSearchBar, setShowSearchBar] = useState(false)
 
     const [error, setError] = useState(false)
+    const [isUserSearching, setIsUserSearching] = useState(false)
 
     // new
     const [movieData, setMovieData] = useState([])
@@ -32,6 +33,10 @@ export default function App() {
     // uses state to toggle between search icon and search input field
     function clickSearchIcon() {
         setShowSearchBar(prevState => !prevState)
+
+        // capture when user attempts to search
+        setIsUserSearching(prevState => !prevState)
+
         // clear input field when input field is closed
         setInputText("")
     }
@@ -60,7 +65,7 @@ export default function App() {
     // scroll to top effect
     useEffect(() => {
         window.addEventListener("scroll", () => {
-          if (window.pageYOffset > 450) {
+          if (window.pageYOffset > 600) {
             setShowButton(true);
           } else {
             setShowButton(false);
@@ -80,11 +85,11 @@ export default function App() {
     // https://movie-library-backend.herokuapp.com/ -> live
 
     useEffect(() => {
-        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1,2,3&engine=netnaija,fzmovies,besthdmovies")
+        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1,2,3,4,5&engine=netnaija,fzmovies,besthdmovies")
             .then(res => res.json())
             .then(data => setMovieData(data))
             .catch(err => {
-                console.log("An error occured:", err);
+                console.log("An error occured: ", err);
                 setError(true);
             })
     }, [])
@@ -92,8 +97,23 @@ export default function App() {
     console.log("filter: ",filterText)
     console.log("Error? ", error)
 
+    // lets filter movieData in 4 steps
+    // 1.
+    const filter1 = movieData.filter(movie => movie.engine === "NetNaija" && movie.is_series === false && movie.category !== "")
+    // 2.
+    const filter2 = filter1.filter(movie => movie.engine === "NetNaija" && movie.is_series === false && movie.category !== null)
+    // 3.
+    const filter3 = movieData.filter(movie => movie.engine === "NetNaija" && movie.is_series === true)
+    // 4.
+    const filter4 = movieData.filter(movie => movie.engine !== "NetNaija")
+
+    // merge all filters
+    const filteredMovieData = [...filter2, ...filter3, ...filter4]
+
+    // console.log(filteredMovieData.filter(movie => movie.engine === "NetNaija" && movie.is_series === false && (movie.category === null || movie.category === "")))
+
     // this should be rendered when the user uses the header category to filter movies
-    const filteredCards = movieData.filter(movie => movie.engine === filterText).map((movie, index) => {
+    const filteredCards = filteredMovieData.filter(movie => movie.engine === filterText).map((movie, index) => {
 
         return (
             <Cards
@@ -105,7 +125,7 @@ export default function App() {
     })
 
     // this should be rendered when user uses input field to search for movie
-    const searchedCards = movieData.filter(movie => movie.name.toLowerCase().indexOf(inputText) > -1).map((movie, index) => {
+    const searchedCards = filteredMovieData.filter(movie => movie.name.toLowerCase().indexOf(inputText) > -1).map((movie, index) => {
 
         return (
             <Cards
@@ -156,7 +176,7 @@ export default function App() {
                     // show searched cards if user is not filtering by header category
                     <div className='cards-list'>
                         {searchedCards.length !== 0 ? searchedCards : 
-                        !error ? <LoadingContainer /> : noMovieFound}
+                        !error ? isUserSearching ? noMovieFound : <LoadingContainer /> : noMovieFound}
                     </div>
                     }
 
@@ -179,7 +199,7 @@ export default function App() {
                     movieInfo={selectedMovie}
                     // handleClick={clickCard}
                     getMovieDetail={movieDetail}
-                    movieData={movieData}
+                    filteredMovieData={movieData}
                 />
 
                 {/* <WelcomeModal /> */}

@@ -62,7 +62,7 @@ export default function Header(props) {
       }
       { props.isSearchIconClicked &&
       <p className='header-desc'>
-        Make sure to check your spellings when searching. If its <span>takes too long to load,</span> it is probably not in our database yet.
+        Make sure to check your spellings when searching.
       </p>
       }
       { !props.isSearchIconClicked &&
