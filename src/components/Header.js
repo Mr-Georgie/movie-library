@@ -9,7 +9,7 @@ export default function Header(props) {
       {name: "All",isActive: true},
       {name: "NetNaija",isActive: false},
       {name: "FzMovies",isActive: false},
-      {name: "BestHDMovies",isActive: false},
+      // {name: "BestHDMovies",isActive: false},
       // {name: "TvSeries",isActive: false}
     ]
   )

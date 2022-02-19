@@ -85,7 +85,7 @@ export default function App() {
     // https://movie-library-backend.herokuapp.com/ -> live
 
     useEffect(() => {
-        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1,2,3,4,5&engine=netnaija,fzmovies,besthdmovies")
+        fetch("https://movie-library-backend.herokuapp.com/getData/?page=1,2,3,4,5&engine=netnaija,fzmovies")
             .then(res => res.json())
             .then(data => setMovieData(data))
             .catch(err => {
