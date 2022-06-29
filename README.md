@@ -4,7 +4,7 @@ Movie Library let's you download movies from popular movie download sites with t
 
 ## Preview
 
-Not available yet
+![movie library (1)](https://user-images.githubusercontent.com/28518667/176549224-c49fba4c-6607-4bdd-b7e9-3b15b20fb1f2.gif)
 
 ## Description
 
