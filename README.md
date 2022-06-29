@@ -12,6 +12,7 @@ Built with the following technologies:
 
 - ReactJs
 - Vanilla CSS
+- ExpressJS Proxy Server
 - Gophie Web API
 
 ## Installation
