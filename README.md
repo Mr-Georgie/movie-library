@@ -20,6 +20,11 @@ Built with the following technologies:
 In the project directory, you can run:
 
 ```bash
+npm install
+```
+Then:
+
+```bash
 npm start
 ```
 
