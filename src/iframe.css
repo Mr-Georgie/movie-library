@@ -1,0 +1,92 @@
+/* General styles for the form */
+#cartForm {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+iframe {
+  height: 550px;
+  width: 550px;
+}
+
+/* Style for sections */
+.section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.section hr {
+  margin-bottom: 20px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+/* Style for form inputs and labels */
+.form-input {
+  margin-bottom: 15px;
+}
+
+.form-input label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.form-input input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for required fields */
+.form-input input[required] {
+  background: #fffbe6;
+}
+
+.form-input .required {
+  color: red;
+  margin-left: 5px;
+}
+
+/* Style for input descriptions */
+.form-input p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Style for hidden sections */
+.hidden-section {
+  display: none;
+}
+
+/* Style for readonly inputs */
+input[readonly] {
+  background: #e9ecef;
+  cursor: not-allowed;
+}
+
+/* Adding some space for personal info and order details sections */
+.section + .section {
+  margin-top: 30px;
+}
